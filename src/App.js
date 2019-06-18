@@ -11,7 +11,7 @@ function App() {
       <SimpleCard square="false" elevation="10"></SimpleCard>
       </div>
       <div style={{marginBottom:'75px', backgroundColor:'#ff487e', width:'100%', height:'200px'}}>
-      <footer style={{textAlign:'center'}}><em><b>Designed By Subhodip With <span role="img" aria-label="yellow love">💛</span></b></em></footer>
+      <footer style={{textAlign:'center'}}><em><b>Designed With <span role="img" aria-label="yellow love">💛</span> By Subhodip </b></em></footer>
       </div>
     </div>
   );
