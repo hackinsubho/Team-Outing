@@ -64,11 +64,16 @@ export default function SimpleCard() {
     dest: '',
     valid: true,
     isSuccess: false,
+    error: false,
   });
   const [open, setOpen] = React.useState(false);
 
   function handleClick() {
     setOpen(true);
+  }
+  function  handleError(){
+    console.log("In handleError Block")
+    return values.error = true;
   }
   function handleSuccess(){
     values.isSuccess = true;
@@ -100,10 +105,10 @@ export default function SimpleCard() {
       name,
       dest
   }).then((data)=>{
-     
       handleSuccess();
   }).catch((error)=>{
-      //error callback
+      handleError();
+      handleClick();
       console.log('error ' , error)
   })
   
@@ -137,6 +142,33 @@ export default function SimpleCard() {
           </IconButton>,
         ]}
       />}
+      {values.error ?  <Snackbar
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      open={open}
+      autoHideDuration={6000}
+      onClose={handleClose}
+      ContentProps={{
+        'aria-describedby': 'message-id',
+      }}
+      message={<span id="message-id">Please Check Your Internet Connection</span>}
+      action={[
+        // <Button key="X" color="secondary" size="small" onClick={handleClose}>
+        //   <b>X</b>
+        // </Button>,
+        <IconButton
+          key="close"
+          aria-label="Close"
+          color="inherit"
+          className={classes.close}
+          onClick={handleClose}
+        >
+          {/* <CloseIcon /> */}
+        </IconButton>,
+      ]}
+    /> : '' }
       { values.isSuccess ? <Card className={classes.card} style={{backgroundColor:'#ffedff'}}>
       <CardContent>
         <h2>Hurray !! Your Submission Is Successful!!<span role="img" aria-label="party poppers">🎉🎉</span></h2>
